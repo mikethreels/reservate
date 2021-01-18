@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+}
+
+.container {
+  background-color: goldenrod;
+  color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+title {
+  display: block;
+}
