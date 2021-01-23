@@ -5,7 +5,7 @@ import restaurantlistStyles from './styles/restaurantlist.module.css'
 
 export const Driver = props => {
   const { restaurant } = props;
-  console.log(restaurant.id)
+  console.log(restaurant)
   return (
 
       <Link className={restaurantlistStyles.object} to={`details/${restaurant.id}`} >

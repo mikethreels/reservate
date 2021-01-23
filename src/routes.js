@@ -6,6 +6,7 @@ import Navbar from './components/heading';
 import LoginNav from './components/loginheader';
 import Restaurantlist from './components/restaurantlist';
 import RestaurantDetails from './components/restaurantdetails';
+import Reservations from './components/reservations'
 
 function Routes() {
   return (
@@ -24,8 +25,12 @@ function Routes() {
           <Restaurantlist />
         </Route>
         <Route exact path="/details/:restaurantId">
-        <LoginNav />
-        <RestaurantDetails />
+          <LoginNav />
+          <RestaurantDetails />
+        </Route>
+        <Route exact path='/reservations'>
+          <LoginNav />
+          <Reservations />
         </Route>
       </Switch>
     </BrowserRouter>

@@ -5,7 +5,7 @@ import {
 
 export const getRestaurants = () => {
   return dispatch => {
-    axios.get('http://192.168.0.106:3001/v1/stores')
+    axios.get('http://192.168.8.102:3001/v1/stores')
     .then(res => {
       const restaurants = res.data;
 
@@ -19,9 +19,9 @@ export const getRestaurants = () => {
 
 export const addRestaurant = (params) => {
     return dispatch => {
-        axios.post(`http://192.168.0.106:3001/v1/stores`, {params})
+        axios.post(`http://192.168.8.102:3001/v1/stores`, {params})
         .then(response => {
-            axios.get(`http://192.168.0.106:3001/v1/stores`)
+            axios.get(`http://192.168.8.102:3001/v1/stores`)
             .then(res => {
                 dispatch({
                     type: GET_RESTAURANTS,
@@ -43,5 +43,12 @@ export const createSession = user => {
   return {
     type: 'CREATE_SESSION',
     payload: user,
+  }
+}
+
+export const createReservation = reservation => {
+  return {
+    type: 'CREATE_RESERVATION',
+    payload: reservation,
   }
 }

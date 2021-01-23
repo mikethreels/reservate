@@ -7,10 +7,31 @@ body {
   color: white;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 50px;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   justify-content: center;
 }
 
 title {
+  display: block;
+}
+
+.linkContainer {
+  display: flex;
+}
+
+.homebutton,
+.userpagebutton {
+  margin: 7px;
+  text-decoration: none;
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 10px;
+  height: 1.3em;
+  justify-self: center;
+  background-color: black;
+  color: white;
+  font-weight: 700;
+  font-size: 25px;
   display: block;
 }

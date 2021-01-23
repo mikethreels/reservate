@@ -12,7 +12,6 @@ const Login = () => {
   const [password, setPassword] = useState('')
 
   const handleChange = e => {
-    console.log(`email: ${email}, password: ${password}`)
     if (e.target.name === 'email') {
       setEmail(e.target.value)
     }else {
@@ -28,7 +27,7 @@ const Login = () => {
 
     axios
       .post(
-        "http://192.168.0.106:3001/v1/sessions",
+        "http://192.168.8.102:3001/v1/sessions",
         {
           email: email,
           password: password
@@ -40,6 +39,7 @@ const Login = () => {
         }
       )
       .then(response => {
+        console.log(response)
         dispatch(Action.createSession(response))
       })
     history.push('/overview')

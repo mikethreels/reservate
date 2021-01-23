@@ -1,0 +1,15 @@
+.objectContainer {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  max-width: 100vw;
+}
+
+.listcontainer {
+  padding: 20px;
+}
+
+.list {
+  border: 1px solid black;
+}
