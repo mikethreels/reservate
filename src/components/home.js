@@ -3,13 +3,10 @@
 import React from 'react';
 import Registration from './auth/registration';
 
-const Home = () => {
-  
-  return (
-      <div>
-          <Registration />
-      </div>
-  );
-}
+const Home = () => (
+  <div>
+    <Registration />
+  </div>
+);
 
-export default Home
+export default Home;

@@ -6,21 +6,21 @@ import Navbar from './components/heading';
 import LoginNav from './components/loginheader';
 import Restaurantlist from './components/restaurantlist';
 import RestaurantDetails from './components/restaurantdetails';
-import Reservations from './components/reservations'
+import Reservations from './components/reservations';
 
 function Routes() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/"> 
+        <Route exact path="/">
           <Navbar />
           <App />
         </Route>
-        <Route exact path='/sign_in'>
+        <Route exact path="/sign_in">
           <Navbar />
           <Login />
         </Route>
-        <Route exact path='/overview'> 
+        <Route exact path="/overview">
           <LoginNav />
           <Restaurantlist />
         </Route>
@@ -28,7 +28,7 @@ function Routes() {
           <LoginNav />
           <RestaurantDetails />
         </Route>
-        <Route exact path='/reservations'>
+        <Route exact path="/reservations">
           <LoginNav />
           <Reservations />
         </Route>

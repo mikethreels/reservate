@@ -1,19 +1,20 @@
 import React from 'react';
-import Header from './styles/loginheader.module.css'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
-import { useHistory } from "react-router-dom";
-import * as Action from '../redux/actions/taskAction'
+import PropTypes from 'prop-types';
+import Header from './styles/loginheader.module.css';
+
+import * as Action from '../redux/actions/taskAction';
 
 const TitleHeader = props => {
-  let history = useHistory();
+  const history = useHistory();
   const { session } = props;
-  const dispatch = useDispatch()
-  
-  const handleSubmit = e => {
-    dispatch(Action.destroySession())
-    history.push('/')
-  }
+  const dispatch = useDispatch();
+
+  const handleSubmit = () => {
+    dispatch(Action.destroySession());
+    history.push('/');
+  };
   return (
     <div className={Header.container}>
       <title title="name">ReservAte.com</title>
@@ -23,14 +24,20 @@ const TitleHeader = props => {
       </div>
       <div className={Header.userEmail}>
         <span>{session[0].data.user.email}</span>
-        <button className={Header.signoutbutton} onClick={handleSubmit} type='button'>Sign Out</button>
+        <button className={Header.signoutbutton} onClick={handleSubmit} type="button">Sign Out</button>
       </div>
     </div>
-  )
-  };
+  );
+};
+
+TitleHeader.propTypes = { session: PropTypes.objectOf(PropTypes.string) };
+
+TitleHeader.defaultProps = {
+  session: {},
+};
 
 const mapStateToProps = state => ({
-  session: state.session
+  session: state.session,
 });
 
 export default connect(mapStateToProps)(TitleHeader);
