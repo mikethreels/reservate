@@ -40,9 +40,7 @@ const createSession = async user => {
     body: JSON.stringify(user),
   };
   const resp = await fetch(sessionsUrl, options);
-  console.log(`response ${resp}`)
   return resp;
 };
-
 
 export { getRestaurants, addUser, createSession };
