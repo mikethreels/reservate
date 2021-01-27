@@ -27,7 +27,7 @@ const Login = () => {
 
     axios
       .post(
-        "http://192.168.8.102:3001/v1/sessions",
+        "https://reservate-api.herokuapp.com//v1/sessions",
         {
           email: email,
           password: password
@@ -41,8 +41,8 @@ const Login = () => {
       .then(response => {
         console.log(response)
         dispatch(Action.createSession(response))
+        history.push('/overview')
       })
-    history.push('/overview')
   }
 
   // const handleSubmit = e => {

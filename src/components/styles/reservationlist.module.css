@@ -1,3 +1,9 @@
+.mainContainer {
+  position: relative;
+  width: 78vw;
+  height: 100vh;
+  left: 20vw;
+}
 .objectContainer {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
   display: grid;
@@ -11,5 +17,10 @@
 }
 
 .list {
-  border: 1px solid black;
+  background-color:  rgb(144, 197, 38);
+  border-radius: 10px;
+}
+
+.discription {
+  font-weight: 700;
 }

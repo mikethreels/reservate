@@ -9,7 +9,7 @@ const Reservations = props => {
   const reservations = session[0].data.user.reservations
   console.log(`reservations ${reservations}`)
   return (
-    <div>
+    <div className={reservationlistStyles.mainContainer}>
       <div className={reservationlistStyles.objectContainer}>
         {reservations.map(reservation => <Reservation key={Math.random()} reservation={reservation} />)}
       </div>

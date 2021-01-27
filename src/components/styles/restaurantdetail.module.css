@@ -1,16 +1,48 @@
 .container {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  position: relative;
+  width: 78vw;
+  height: 100vh;
+  left: 20vw;
 }
 
+h1 {
+  text-align: center;
+}
+
+form {
+  margin: auto;
+}
 .backbutton {
   text-decoration: none;
-  border-radius: 10px;
-  color: white;
-  background-color: black;
+  border-radius: 0 20px 20px 0;;
+  color: black;
+  background-color: rgb(144, 197, 38);
   padding: 5px;
   font-weight: 500;
   font-size: 20px;
-  margin: 20px;
+  margin: 20px 0;
   display: block;
   width: 70px;
+}
+
+.menuContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 10px;
+}
+
+.reservationButton {
+  background-color: rgb(144, 197, 38);
+  color: black;
+  border: none;
+}
+
+.reservationContainer {
+  height: 30vh;
+}
+
+.allMenu {
+  height: 70vh;
 }

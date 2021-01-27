@@ -5,7 +5,7 @@ import {
 
 export const getRestaurants = () => {
   return dispatch => {
-    axios.get('http://192.168.8.102:3001/v1/stores')
+    axios.get('https://reservate-api.herokuapp.com/v1/stores')
     .then(res => {
       const restaurants = res.data;
 
@@ -19,9 +19,9 @@ export const getRestaurants = () => {
 
 export const addRestaurant = (params) => {
     return dispatch => {
-        axios.post(`http://192.168.8.102:3001/v1/stores`, {params})
+        axios.post(`https://reservate-api.herokuapp.com/v1/stores`, {params})
         .then(response => {
-            axios.get(`http://192.168.8.102:3001/v1/stores`)
+            axios.get(`https://reservate-api.herokuapp.com/v1/stores`)
             .then(res => {
                 dispatch({
                     type: GET_RESTAURANTS,
@@ -43,6 +43,12 @@ export const createSession = user => {
   return {
     type: 'CREATE_SESSION',
     payload: user,
+  }
+}
+
+export const destroySession = () => {
+  return {
+    type: 'DESTROY_SESSION',
   }
 }
 

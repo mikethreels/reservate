@@ -3,35 +3,54 @@ body {
 }
 
 .container {
-  background-color: goldenrod;
-  color: white;
+  background-color: white;
+  color: black;
+  border-right: 1px solid lightgray;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: 50px;
+  font-size: 25px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   justify-content: center;
+  max-width: 20vw;
+  height: 100vh;
+  position: fixed;
 }
 
 title {
   display: block;
+  margin: 10px;
 }
 
 .linkContainer {
   display: flex;
+  flex-direction: column;
 }
 
 .homebutton,
 .userpagebutton {
-  margin: 7px;
+  margin: 7px 0 7px 7px;
   text-decoration: none;
-  border: 1px solid black;
   padding: 5px;
-  border-radius: 10px;
   height: 1.3em;
   justify-self: center;
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
   font-weight: 700;
   font-size: 25px;
   display: block;
+}
+
+.homebutton:hover,
+.userpagebutton:hover {
+  background-color: rgb(144, 197, 38);
+}
+
+.userEmail {
+  font-size: 20px;
+  align-self: end;
+  padding: 15px;
+}
+
+.signoutbutton {
+  margin-left: 37px;
 }

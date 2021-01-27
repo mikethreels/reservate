@@ -1,6 +1,6 @@
-const restaurantsUrl = 'http://192.168.8.102:3001/v1/stores';
-const userUrl = 'http://192.168.8.102:3001/v1/users';
-const sessionsUrl = 'http://192.168.8.102:3001/v1/sessions';
+const restaurantsUrl = 'https://reservate-api.herokuapp.com/v1/stores';
+const userUrl = 'https://reservate-api.herokuapp.com/v1/users';
+const sessionsUrl = 'https://reservate-api.herokuapp.com/v1/sessions';
 
 const getRestaurants = async () => {
   try {

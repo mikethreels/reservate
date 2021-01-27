@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import * as UserApi from '../../modules/apicall'
+import { useHistory } from "react-router-dom";
 import authStyles from '../styles/new.module.css'
 
 const Registration = () => {
+  let history = useHistory();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [password_confirmation, setPassword_confirmation] = useState('')
@@ -29,6 +31,10 @@ const Registration = () => {
     };
     console.log("handle submit", userObject)
     UserApi.addUser(userObject);
+    setEmail('')
+    setPassword('')
+    setPassword_confirmation('')
+    history.push('/sign_in')
   };
 
   return (

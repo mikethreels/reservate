@@ -1,0 +1,29 @@
+.mealContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.mealTitle {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.mealItemContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.mealItemName {
+  font-weight: 700;
+  margin: 0;
+}
+
+.mealItemPrice {
+  margin: 0;
+}

@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import * as Action from '../redux/actions/taskAction'
+import Menu from './menu';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
@@ -18,16 +19,12 @@ const restaurantDetails = props => {
   const store_id = parseInt(restaurantId);
   const user_id = session[0].data.user.id;
   const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
-
+  
   const currentRestaurant = restaurants.find(c => c.id === store_id);
-
+  const menu = Object.entries(currentRestaurant.menus[0].items)
   const handleChange = e => {
-    console.log(`date: ${date}, time: ${time}`)
     if (e.target.name === 'date') {
       setDate(e.target.value)
-    }else {
-      setTime(e.target.value)
     }
   }
   
@@ -36,10 +33,9 @@ const restaurantDetails = props => {
       date,
       store: currentRestaurant
     }
-    console.log(storeUpdate)
     axios
       .post(
-        "http://192.168.8.102:3001/v1/reservations",
+        "https://reservate-api.herokuapp.com/v1/reservations",
         {
           date: date,
           confirmed: false,
@@ -53,7 +49,6 @@ const restaurantDetails = props => {
         }
       )
       .then(response => {
-        console.log(response)
         dispatch(Action.createReservation(storeUpdate))
       })
     history.push('/reservations')
@@ -61,31 +56,31 @@ const restaurantDetails = props => {
 
   return (
     <div className={detailStyles.container}>
-      <Link className={detailStyles.backbutton} to={'/overview'} >Go back</Link>
-      <div>
-        <h1>
-          {currentRestaurant.name}
-        </h1>
+      <div className={detailStyles.reservationContainer}>
+        <Link className={detailStyles.backbutton} to={'/overview'} >Back</Link>
+        <div>
+          <h1>
+            {currentRestaurant.name}
+          </h1>
+        </div>
+        <form action="">
+          <input 
+            type='datetime-local' 
+            step="3600" 
+            name='date'  
+            value={date} 
+            onChange={handleChange} 
+            required 
+          />
+          <button className={detailStyles.reservationButton} onClick={handleSubmit} type='button'>Make Reservation</button>
+        </form>
       </div>
-      <form action="">
-        <input 
-          type='datetime-local' 
-          step="3600" 
-          name='date'  
-          value={date} 
-          onChange={handleChange} 
-          required 
-        />
-        {/* <input 
-          type="time" 
-          step="3600000" 
-          name='time'
-          value={time}
-          onChange={handleChange}
-          required
-        /> */}
-        <button onClick={handleSubmit} type='button'>Make Reservation</button>
-      </form>
+      <div className={detailStyles.allMenu}>
+        <div className={detailStyles.menuContainer}>
+          {menu.map(menu => <Menu key={Math.random()} meal={menu} />)}
+          {/* {currentRestaurant.menus[0].items.breakfast} */}
+        </div>
+      </div>
     </div>
   );
 };
