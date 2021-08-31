@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { getRestaurants } from '../redux/actions/taskAction';
+// import PropTypes from 'prop-types';
+// import { getRestaurants } from '../redux/actions/taskAction';
 import Registration from './auth/registration';
 
 class App extends React.Component {
@@ -11,10 +11,10 @@ class App extends React.Component {
     this.state = {};
   }
 
-  componentDidMount() {
-    const { getRestaurants } = this.props;
-    getRestaurants();
-  }
+  // componentDidMount() {
+  //   const { getRestaurants } = this.props;
+  //   getRestaurants();
+  // }
 
   render() {
     return (
@@ -25,7 +25,7 @@ class App extends React.Component {
   }
 }
 
-App.propTypes = { getRestaurants: PropTypes.func };
+// App.propTypes = { getRestaurants: PropTypes.func };
 
 App.defaultProps = {
   getRestaurants: {},
@@ -35,11 +35,11 @@ const mapStateToProps = state => ({
   Loading: state.task.loading,
 });
 
-const mapDispatchToProps = dispatch => ({
-  getRestaurants: () => dispatch(getRestaurants()),
-});
+// const mapDispatchToProps = dispatch => ({
+//   getRestaurants: () => dispatch(getRestaurants()),
+// });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  // mapDispatchToProps,
 )(App);

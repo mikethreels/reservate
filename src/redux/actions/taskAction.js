@@ -33,6 +33,25 @@ export const addUser = user => ({
   payload: user,
 });
 
+export const createSessionCall = async (email, password) => {
+  try {
+    const response = axios.post('https://reservate-api.herokuapp.com//v1/sessions',
+      {
+        email,
+        password,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    return response;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 export const createSession = user => ({
   type: 'CREATE_SESSION',
   payload: user,

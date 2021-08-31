@@ -1,6 +1,10 @@
 import update from 'react-addons-update';
 
-const defaultState = {};
+const defaultState = [{
+  data: {
+    logged_in: false,
+  },
+}];
 
 const sessionReducer = (state = defaultState, action) => {
   const newUser = [action.payload];

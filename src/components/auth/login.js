@@ -1,6 +1,6 @@
-import axios from 'axios';
-import React, { useState } from 'react';
-import { connect, useDispatch } from 'react-redux';
+// import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as Action from '../../redux/actions/taskAction';
 import authStyles from '../styles/new.module.css';
@@ -10,6 +10,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const session = useSelector(state => state.session);
 
   const handleChange = e => {
     if (e.target.name === 'email') {
@@ -19,24 +20,16 @@ const Login = () => {
     }
   };
 
-  const handleSubmit = () => {
-    axios
-      .post(
-        'https://reservate-api.herokuapp.com//v1/sessions',
-        {
-          email,
-          password,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-      )
-      .then(response => {
-        dispatch(Action.createSession(response));
-        history.push('/overview');
-      });
+  useEffect(() => {
+    if (session[0].data.logged_in) {
+      history.push('/overview');
+    }
+  }, [session]);
+
+  const handleSubmit = async () => {
+    const user = await Action.createSessionCall(email, password);
+    dispatch(Action.createSession(user));
+    dispatch(Action.getRestaurants());
   };
 
   return (

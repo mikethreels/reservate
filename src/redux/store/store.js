@@ -5,7 +5,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import reducers from '../reducers/index';
+import rootReducer from '../reducers/index';
 
 const persistConfig = {
   key: 'root',
@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'development') {
   middlewares.push(logger);
 }
 
-const persistedReducer = persistReducer(persistConfig, reducers);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export default () => {
   const store = createStore(
