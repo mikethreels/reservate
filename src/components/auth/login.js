@@ -11,6 +11,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const session = useSelector(state => state.session);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = e => {
     if (e.target.name === 'email') {
@@ -27,9 +28,18 @@ const Login = () => {
   }, [session]);
 
   const handleSubmit = async () => {
-    const user = await Action.createSessionCall(email, password);
-    dispatch(Action.createSession(user));
-    dispatch(Action.getRestaurants());
+    let user = '';
+    try {
+      user = await Action.createSessionCall(email, password);
+    } catch (err) {
+      user = err;
+    }
+    if (!user.data) {
+      setErrorMessage('Wrong Username or Password');
+    } else {
+      dispatch(Action.createSession(user));
+      dispatch(Action.getRestaurants());
+    }
   };
 
   return (
@@ -53,6 +63,7 @@ const Login = () => {
         />
         <button onClick={handleSubmit} type="button">Login</button>
       </form>
+      <div>{errorMessage}</div>
     </div>
   );
 };

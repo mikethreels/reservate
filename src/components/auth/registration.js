@@ -1,7 +1,8 @@
 /* eslint-disable camelcase */
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import * as Action from '../../redux/actions/taskAction';
 import * as UserApi from '../../modules/apicall';
 import authStyles from '../styles/new.module.css';
 
@@ -10,6 +11,8 @@ const Registration = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password_confirmation, setPassword_confirmation] = useState('');
+  const dispatch = useDispatch();
+  const session = useSelector(state => state.session);
 
   const handleChange = e => {
     if (e.target.name === 'email') {
@@ -21,7 +24,13 @@ const Registration = () => {
     }
   };
 
-  const handleSubmit = () => {
+  useEffect(() => {
+    if (session[0].data.logged_in) {
+      history.push('/overview');
+    }
+  }, [session]);
+
+  const handleSubmit = async () => {
     const userObject = {
       user: {
         email,
@@ -29,11 +38,18 @@ const Registration = () => {
         password_confirmation,
       },
     };
-    UserApi.addUser(userObject);
+    await UserApi.addUser(userObject);
+    let user = '';
+    try {
+      user = await Action.createSessionCall(email, password);
+    } catch (err) {
+      user = err;
+    }
+    dispatch(Action.createSession(user));
+    dispatch(Action.getRestaurants());
     setEmail('');
     setPassword('');
     setPassword_confirmation('');
-    history.push('/sign_in');
   };
 
   return (
