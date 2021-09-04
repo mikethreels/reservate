@@ -49,7 +49,6 @@ export const createSessionCall = async (email, password) => {
   } catch (error) {
     const { response } = error;
     const { request, ...errorObject } = response;
-    console.log(response);
     return errorObject;
   }
 };

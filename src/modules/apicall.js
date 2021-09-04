@@ -27,6 +27,7 @@ const addUser = async user => {
     body: JSON.stringify(user),
   };
   const resp = await fetch(userUrl, options);
+  localStorage.setItem('user', resp);
   return resp;
 };
 

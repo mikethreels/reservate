@@ -1,4 +1,4 @@
-import update from 'react-addons-update';
+// import update from 'react-addons-update';
 
 const defaultState = [{
   data: {
@@ -13,16 +13,16 @@ const sessionReducer = (state = defaultState, action) => {
       return newUser;
     case 'DESTROY_SESSION':
       return defaultState;
-    case 'CREATE_RESERVATION':
-      return update(state, {
-        0: {
-          data: {
-            user: {
-              reservations: { $push: [action.payload] },
-            },
-          },
-        },
-      });
+    // case 'CREATE_RESERVATION':
+    //   return update(state, {
+    //     0: {
+    //       data: {
+    //         user: {
+    //           reservations: { $push: [action.payload] },
+    //         },
+    //       },
+    //     },
+    //   });
     default:
       return state;
   }

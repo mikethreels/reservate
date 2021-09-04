@@ -5,25 +5,29 @@ import reservationlistStyles from './styles/reservationlist.module.css';
 import Reservation from './reservation';
 
 const Reservations = props => {
-  const { session } = props;
-  const { reservations } = session[0].data.user;
+  const { reservation } = props;
   return (
     <div className={reservationlistStyles.mainContainer}>
       <div className={reservationlistStyles.objectContainer}>
-        {reservations.map(reserv => <Reservation key={Math.random()} reservation={reserv} />)}
+        {reservation.map(reserv => <Reservation key={Math.random()} reservation={reserv} />)}
       </div>
     </div>
   );
 };
 
-Reservations.propTypes = { session: PropTypes.objectOf(PropTypes.string) };
+Reservations.propTypes = {
+
+  reservation: PropTypes.arrayOf(PropTypes.string),
+};
 
 Reservations.defaultProps = {
-  session: {},
+
+  reservation: [],
 };
 
 const mapStateToProps = state => ({
   session: state.session,
+  reservation: state.reservation,
 });
 
 export default connect(mapStateToProps)(Reservations);

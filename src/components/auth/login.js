@@ -37,6 +37,7 @@ const Login = () => {
     if (!user.data) {
       setErrorMessage('Wrong Username or Password');
     } else {
+      console.log(user);
       dispatch(Action.createSession(user));
       dispatch(Action.getRestaurants());
     }
