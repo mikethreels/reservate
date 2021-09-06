@@ -1,5 +1,3 @@
-// import update from 'react-addons-update';
-
 const defaultState = [];
 
 const reservationReducer = (state = defaultState, action) => {

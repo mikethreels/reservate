@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import restaurantlistStyles from './styles/restaurantlist.module.css';
 
-export const Driver = props => {
+export const Restaurant = props => {
   const { restaurant } = props;
   return (
 
@@ -24,10 +24,19 @@ export const Driver = props => {
   );
 };
 
-Driver.propTypes = { restaurant: PropTypes.objectOf(PropTypes.string) };
+Restaurant.propTypes = {
+  restaurant: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    location: PropTypes.string,
+    email: PropTypes.string,
+    created_at: PropTypes.string,
+    updated_at: PropTypes.string,
+  }),
+};
 
-Driver.defaultProps = {
+Restaurant.defaultProps = {
   restaurant: {},
 };
 
-export default Driver;
+export default Restaurant;

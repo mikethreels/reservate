@@ -1,4 +1,3 @@
-// import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -13,14 +12,6 @@ const Login = () => {
   const session = useSelector(state => state.session);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleChange = e => {
-    if (e.target.name === 'email') {
-      setEmail(e.target.value);
-    } else {
-      setPassword(e.target.value);
-    }
-  };
-
   useEffect(() => {
     if (session[0].data.logged_in) {
       history.push('/overview');
@@ -30,14 +21,13 @@ const Login = () => {
   const handleSubmit = async () => {
     let user = '';
     try {
-      user = await Action.createSessionCall(email, password);
+      user = await Action.createSessionCall(email.target.value, password.target.value);
     } catch (err) {
       user = err;
     }
     if (!user.data) {
       setErrorMessage('Wrong Username or Password');
     } else {
-      console.log(user);
       dispatch(Action.createSession(user));
       dispatch(Action.getRestaurants());
     }
@@ -50,16 +40,16 @@ const Login = () => {
           type="email"
           name="email"
           placeholder="email"
-          value={email}
-          onChange={handleChange}
+          value={email.email}
+          onChange={setEmail}
           required
         />
         <input
           type="password"
           name="password"
           placeholder="Password"
-          value={password}
-          onChange={handleChange}
+          value={password.password}
+          onChange={setPassword}
           required
         />
         <button onClick={handleSubmit} type="button">Login</button>

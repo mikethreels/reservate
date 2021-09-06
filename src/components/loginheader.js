@@ -30,7 +30,7 @@ const TitleHeader = props => {
   );
 };
 
-TitleHeader.propTypes = { session: PropTypes.objectOf(PropTypes.string) };
+TitleHeader.propTypes = { session: PropTypes.arrayOf(PropTypes.object) };
 
 TitleHeader.defaultProps = {
   session: {},

@@ -16,7 +16,7 @@ const Restaurantlist = props => {
   );
 };
 
-Restaurantlist.propTypes = { restaurants: PropTypes.objectOf(PropTypes.string) };
+Restaurantlist.propTypes = { restaurants: PropTypes.arrayOf(PropTypes.object) };
 
 Restaurantlist.defaultProps = {
   restaurants: {},
