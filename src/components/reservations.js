@@ -16,8 +16,7 @@ const Reservations = props => {
 };
 
 Reservations.propTypes = {
-
-  reservation: PropTypes.arrayOf(PropTypes.string),
+  reservation: PropTypes.arrayOf(PropTypes.object),
 };
 
 Reservations.defaultProps = {

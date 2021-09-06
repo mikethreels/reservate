@@ -36,7 +36,16 @@ const Reservation = props => {
   );
 };
 
-Reservation.propTypes = { reservation: PropTypes.objectOf(PropTypes.string) };
+// Reservation.propTypes = { reservation: PropTypes.objectOf(PropTypes.string) };
+Reservation.propTypes = {
+  reservation: PropTypes.shape({
+    date: PropTypes.string,
+    store: PropTypes.shape({
+      name: PropTypes.string,
+      location: PropTypes.string,
+    }),
+  }),
+};
 
 Reservation.defaultProps = {
   reservation: {},

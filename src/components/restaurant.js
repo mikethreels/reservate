@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import restaurantlistStyles from './styles/restaurantlist.module.css';
 
-export const Restaurant = props => {
+const Restaurant = props => {
   const { restaurant } = props;
   return (
 

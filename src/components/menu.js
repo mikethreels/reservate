@@ -5,7 +5,6 @@ import menuStyles from './styles/menu.module.css';
 
 const Menu = props => {
   const { meal } = props;
-
   return (
     <div className={menuStyles.mealContainer}>
       <title className={menuStyles.mealTitle}>{meal[0]}</title>
@@ -16,10 +15,16 @@ const Menu = props => {
   );
 };
 
-Menu.propTypes = { meal: PropTypes.objectOf(PropTypes.string) };
-
+Menu.propTypes = {
+  meal: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.arrayOf(PropTypes.array),
+    ]),
+  ),
+};
 Menu.defaultProps = {
-  meal: {},
+  meal: [],
 };
 
 export default Menu;

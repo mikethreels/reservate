@@ -12,7 +12,7 @@ const MenuItems = props => {
   );
 };
 
-MenuItems.propTypes = { items: PropTypes.objectOf(PropTypes.string) };
+MenuItems.propTypes = { items: PropTypes.arrayOf(PropTypes.string) };
 
 MenuItems.defaultProps = {
   items: {},
