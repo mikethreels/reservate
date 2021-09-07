@@ -1,11 +1,10 @@
-import React from 'react'
-import MenuItems from './menuitems'
+import React from 'react';
+import PropTypes from 'prop-types';
+import MenuItems from './menuitems';
 import menuStyles from './styles/menu.module.css';
 
 const Menu = props => {
   const { meal } = props;
-  console.log(meal)
-
   return (
     <div className={menuStyles.mealContainer}>
       <title className={menuStyles.mealTitle}>{meal[0]}</title>
@@ -13,7 +12,19 @@ const Menu = props => {
         {meal[1].map(mealItem => <MenuItems key={Math.random()} items={mealItem} />)}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Menu
+Menu.propTypes = {
+  meal: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.arrayOf(PropTypes.array),
+    ]),
+  ),
+};
+Menu.defaultProps = {
+  meal: [],
+};
+
+export default Menu;

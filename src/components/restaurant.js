@@ -1,31 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import restaurantlistStyles from './styles/restaurantlist.module.css'
+import restaurantlistStyles from './styles/restaurantlist.module.css';
 
-export const Driver = props => {
+const Restaurant = props => {
   const { restaurant } = props;
-  console.log(restaurant)
   return (
 
-      <Link className={restaurantlistStyles.object} to={`details/${restaurant.id}`} >
-        <div>
-          <span>
-            {restaurant.name}
+    <Link className={restaurantlistStyles.object} to={`details/${restaurant.id}`}>
+      <div>
+        <span>
+          {restaurant.name}
             &nbsp;
-            <ul>
-              <li className={restaurantlistStyles.listItem}>Location: {restaurant.location}</li>
-            </ul>
-          </span>
-        </div>
-      </Link>
+          <ul>
+            <li className={restaurantlistStyles.listItem}>
+              Location:
+              {restaurant.location}
+            </li>
+          </ul>
+        </span>
+      </div>
+    </Link>
   );
 };
 
-Driver.propTypes = { driver: PropTypes.object };
-
-Driver.defaultProps = {
-  driver: {},
+Restaurant.propTypes = {
+  restaurant: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    location: PropTypes.string,
+    email: PropTypes.string,
+    created_at: PropTypes.string,
+    updated_at: PropTypes.string,
+  }),
 };
 
-export default Driver;
+Restaurant.defaultProps = {
+  restaurant: {},
+};
+
+export default Restaurant;

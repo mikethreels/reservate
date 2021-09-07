@@ -11,14 +11,14 @@ body {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   justify-content: center;
-  max-width: 20vw;
+  max-width: 32vw;
   height: 100vh;
   position: fixed;
 }
 
 title {
   display: block;
-  margin: 10px;
+  margin: 30px;
 }
 
 .linkContainer {

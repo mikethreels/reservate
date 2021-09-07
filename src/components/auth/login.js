@@ -1,83 +1,63 @@
-import axios from 'axios';
-import React, { useState } from 'react'
-import { connect, useDispatch } from 'react-redux';
-import * as Action from '../../redux/actions/taskAction'
-import authStyles from '../styles/new.module.css'
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import * as Action from '../../redux/actions/taskAction';
+import authStyles from '../styles/new.module.css';
 
 const Login = () => {
-  let history = useHistory();
+  const history = useHistory();
   const dispatch = useDispatch();
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const session = useSelector(state => state.session);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleChange = e => {
-    if (e.target.name === 'email') {
-      setEmail(e.target.value)
-    }else {
-      setPassword(e.target.value)
+  useEffect(() => {
+    if (session[0].data.logged_in) {
+      history.push('/overview');
     }
-  }
-  
-  const handleSubmit = e => {
-    // const userObject = {
-    //   email: email,
-    //   password: password
-    // }
+  }, [session]);
 
-    axios
-      .post(
-        "https://reservate-api.herokuapp.com//v1/sessions",
-        {
-          email: email,
-          password: password
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        }
-      )
-      .then(response => {
-        console.log(response)
-        dispatch(Action.createSession(response))
-        history.push('/overview')
-      })
-  }
-
-  // const handleSubmit = e => {
-  //   const userObject = {
-  //       email: email,
-  //       password: password,
-  //   };
-  //   console.log("handle submit login", userObject)
-  //   UserApi.createSession(userObject);
-  // };
+  const handleSubmit = async () => {
+    let user = '';
+    try {
+      user = await Action.createSessionCall(email.target.value, password.target.value);
+    } catch (err) {
+      user = err;
+    }
+    if (!user.data) {
+      setErrorMessage('Wrong Username or Password');
+    } else {
+      dispatch(Action.createSession(user));
+      dispatch(Action.getRestaurants());
+    }
+  };
 
   return (
     <div className={authStyles.formcontainer}>
       <form action="">
-        <input 
-          type='email' 
-          name='email' 
-          placeholder='email' 
-          value={email} 
-          onChange={handleChange} 
-          required 
+        <input
+          type="email"
+          name="email"
+          placeholder="email"
+          value={email.email}
+          onChange={setEmail}
+          required
         />
-        <input 
-          type='password' 
-          name='password' 
-          placeholder='Password' 
-          value={password} 
-          onChange={handleChange} 
-          required 
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={password.password}
+          onChange={setPassword}
+          required
         />
-        <button onClick={handleSubmit} type='button'>Login</button>
+        <button onClick={handleSubmit} type="button">Login</button>
       </form>
+      <div>{errorMessage}</div>
     </div>
-  )
-}
+  );
+};
 
 const mapStateToProps = state => ({
   scores: state.users,

@@ -1,11 +1,12 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { 
+import {
   GET_RESTAURANTS,
 } from '../actions/actions';
-  const INITIAL_STATE = {
-    restaurants: [],
-    loading : false,
-  };
+
+const INITIAL_STATE = {
+  restaurants: [],
+  loading: false,
+};
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -13,9 +14,9 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         restaurants: action.restaurants,
-        loading: false
+        loading: false,
       };
-    } 
+    }
     default:
       return state;
   }
