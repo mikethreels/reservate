@@ -1,5 +1,5 @@
-# React calculator App
-This is a Formula 1 information app build with React
+# React reservate App
+With this application, you'll be able to organise reservations as a restaurant owner and make reservations as a user.
 
 ![screenshot](./src/images/app_screenshot.png)
 
